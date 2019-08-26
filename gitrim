@@ -48,8 +48,48 @@ function list_largest
     echo -e "$output" | column -t -s ', '
     echo -e "\e[0m"
 }
+
+# Trims file from git history
+function trim_file
+{
+    echo -en " \u001b[32;1m\u001b[4mEnter file path to trim :\u001b[0m "
+    read -r filepath
+    git filter-branch --tag-name-filter cat --index-filter \
+    "git rm -r --cached --ignore-unmatch $filepath" --prune-empty -f -- --all
+}
+
+# Remove trimmed files from local repo.
+function clean_files
+{
+    rm -rf .git/refs/original/
+    git reflog expire --expire=now --all
+    git gc --prune=now
+    git gc --aggressive --prune=now
+}
+
+# Push changed repo to remote
+function push_change
+{
+    git push origin --force --all
+    git push origin --force --tag
+    echo -e "u001b[31;1m Warning! \u001b[0m"
+    echo -e " \e[1m Anyone else with a local clone of this repo should use git rebase\
+    or a fresh clone, to avoid restoring the repo to earlier state.\e[0m"
+}
+
+# Clean up and exit
+function bye
+{
+    cd "$CWD" || return
+    clear
+    exit
+}
+
+sel_repo
+
 # Infinite loop for menu
 while true
+
 do
 
     clear
