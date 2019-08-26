@@ -1,0 +1,72 @@
+#!/bin/bash
+# Trim unncecessary files from git repository
+
+# Infinite loop for menu
+while true
+do
+
+    clear
+
+    # Draw UI, ANSI Escape sequences used. Edit carefully!
+    echo
+    echo -e "                  \e[7m Gitrim - Trim Git Repository \e[0m"
+    echo -e " \e[1m+----------------------------------------------------------------+"
+    echo -e " \e[1m|     \u001b[34;1m (1) Select Repository          (2) Update Branches \u001b[0m       \e[1m|"
+    echo -e " \e[1m|----------------------------------------------------------------|"
+    echo -e " \e[1m|     \u001b[34;1m (3) List Largest Files         (4) Trim Files \u001b[0m            \e[1m|"
+    echo -e " \e[1m|----------------------------------------------------------------|"
+    echo -e " \e[1m|     \u001b[34;1m (5) Push Changes              \u001b[31;1m (0) Quit \u001b[0m                  \e[1m|"
+    echo -e " \e[1m+----------------------------------------------------------------+\e[0m"
+    echo
+    echo -e "\e[1m For best results use the options sequentially per repository.\e[0m"
+    echo -en "  \u001b[32;1m\u001b[4mSelect Option :\u001b[0m "
+
+    # Save entered number
+    read -r choice
+
+    # Run appropriate choice
+    case "$choice" in
+
+        1 )
+            sel_repo
+            echo
+            echo -e " \e[41m Changed repository. \e[0m"
+            # wait for input, e.g. by pressing ENTER:
+            read -r
+            ;;
+        2)
+            update_branch
+            echo
+            echo -e " \e[41m All branches up-to-date. \e[0m"
+            read -r
+            ;;
+        3)
+            list_largest
+            echo
+            echo -e " \e[41m Largest files listed. \e[0m"
+            read -r
+            ;;
+        4)
+            trim_file
+            echo
+            echo -e " \e[41m Selected files trimmed. \e[0m"
+            read -r
+            ;;
+        5)
+            push_change
+            echo
+            echo -e " \e[41m Changes pushed to remote. \e[0m"
+            read -r
+            ;;
+        0)
+            bye && exit
+            ;;
+        * )
+            echo -e " \e[41m Wrong option \e[0m"
+            echo -e "  Please try again...  "
+            sleep 2
+            ;;
+
+    esac
+
+done
