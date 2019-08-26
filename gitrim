@@ -14,6 +14,14 @@ function sel_repo
     cd "$repo_dir" || return
     echo "$PWD"
 }
+
+# Makes sure all branches are up-to-date
+function update_branch
+{
+    for branch in $(git branch -a | grep remotes | grep -v HEAD | grep -v master); do
+        git branch --track "${branch##*/}" "$branch"
+    done
+}
 # Infinite loop for menu
 while true
 do
