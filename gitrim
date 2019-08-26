@@ -2,6 +2,18 @@
 # Trim unncecessary files from git repository
 # Credits to various people over at stackoverflow
 
+CWD=$PWD
+
+# Functions
+
+# Changes to repo provided by user
+function sel_repo
+{
+    echo -en " \u001b[32;1m\u001b[4mEnter repository path :\u001b[0m "
+    read -r repo_dir
+    cd "$repo_dir" || return
+    echo "$PWD"
+}
 # Infinite loop for menu
 while true
 do
