@@ -1,5 +1,6 @@
 #!/bin/bash
 # Trim unncecessary files from git repository
+# Credits to various people over at stackoverflow
 
 # Infinite loop for menu
 while true
@@ -15,7 +16,9 @@ do
     echo -e " \e[1m|----------------------------------------------------------------|"
     echo -e " \e[1m|     \u001b[34;1m (3) List Largest Files         (4) Trim Files \u001b[0m            \e[1m|"
     echo -e " \e[1m|----------------------------------------------------------------|"
-    echo -e " \e[1m|     \u001b[34;1m (5) Push Changes              \u001b[31;1m (0) Quit \u001b[0m                  \e[1m|"
+    echo -e " \e[1m|     \u001b[34;1m (5) Clean Local Repo           (6) Push Changes  \u001b[0m         \e[1m|"
+    echo -e " \e[1m+----------------------------------------------------------------+\e[0m"
+    echo -e " \e[1m|                          \u001b[31;1m (0) Quit \u001b[0m                            \e[1m|"
     echo -e " \e[1m+----------------------------------------------------------------+\e[0m"
     echo
     echo -e "\e[1m For best results use the options sequentially per repository.\e[0m"
@@ -53,6 +56,12 @@ do
             read -r
             ;;
         5)
+            clean_files
+            echo
+            echo -e " \e[41m Trimmed files cleaned from local repository. \e[0m"
+            read -r
+            ;;
+        6)
             push_change
             echo
             echo -e " \e[41m Changes pushed to remote. \e[0m"
