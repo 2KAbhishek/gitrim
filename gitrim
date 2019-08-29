@@ -9,7 +9,7 @@ CWD=$PWD
 # Changes to repo provided by user
 function sel_repo
 {
-    echo -en " \u001b[32;1m\u001b[4mEnter repository path :\u001b[0m "
+    echo -en " \u001b[32;1m\u001b[4mEnter full path to repository :\u001b[0m "
     read -r repo_dir
     cd "$repo_dir" || return
     echo "$PWD"
@@ -119,38 +119,38 @@ do
         1 )
             sel_repo
             echo
-            echo -e " \e[41m Changed repository. \e[0m"
+            echo -e " \e[42m Changed repository. \e[0m"
             # wait for input, e.g. by pressing ENTER:
             read -r
             ;;
         2 )
             update_branch
             echo
-            echo -e " \e[41m All branches up-to-date. \e[0m"
+            echo -e " \e[42m All branches up-to-date. \e[0m"
             read -r
             ;;
         3 )
             list_largest
             echo
-            echo -e " \e[41m Largest files listed. \e[0m"
+            echo -e " \e[42m Largest files listed. \e[0m"
             read -r
             ;;
         4 )
             trim_file
             echo
-            echo -e " \e[41m Selected files trimmed. \e[0m"
+            echo -e " \e[42m Selected files trimmed. \e[0m"
             read -r
             ;;
         5 )
             clean_files
             echo
-            echo -e " \e[41m Trimmed files cleaned from local repository. \e[0m"
+            echo -e " \e[42m Trimmed files cleaned from local repository. \e[0m"
             read -r
             ;;
         6 )
             push_change
             echo
-            echo -e " \e[41m Changes pushed to remote. \e[0m"
+            echo -e " \e[42m Changes pushed to remote. \e[0m"
             read -r
             ;;
         0 )
@@ -159,7 +159,7 @@ do
         * )
             echo -e " \e[41m Wrong option \e[0m"
             echo -e "  Please try again...  "
-            sleep 2
+            sleep 1
             ;;
 
     esac
