@@ -9,7 +9,7 @@ CWD=$PWD
 # Changes to repo provided by user
 function sel_repo
 {
-    echo -en " \u001b[32;1m\u001b[4mEnter full path to repository :\u001b[0m "
+    echo -en " \u001b[32;1m\u001b[4m Enter full path to repository :\u001b[0m "
     read -r repo_dir
     cd "$repo_dir" || return
     echo "$PWD"
@@ -23,30 +23,16 @@ function update_branch
     done
 }
 
-# Lists top 10 objects sorted by size, in KB
+# Requires dust or du for functionality
 function list_largest
 {
-    IFS=$'\n';
-    objects=$(git verify-pack -v .git/objects/pack/pack-*.idx | grep -v chain | sort -k3nr | head)
-
-    output="Size,Pack,SHA,File"
-    for y in $objects
-    do
-        # extract the size in bytes
-        size=$(($(echo "$y" | cut -f 5 -d ' ')/1024))
-        # extract the compressed size in bytes
-        compressedSize=$(($(echo "$y" | cut -f 6 -d ' ')/1024))
-        # extract the SHA
-        sha=$(echo "$y" | cut -f 1 -d ' ')
-        # find the objects location in the repository tree
-        other=$(git rev-list --all --objects | grep "$sha")
-        #lineBreak=`echo -e "\n"`
-        output="${output}\n${size},${compressedSize},${other}"
-    done
-
-    echo -e "\e[1m"
-    echo -e "$output" | column -t -s ', '
-    echo -e "\e[0m"
+    echo -en " \u001b[32;1m\u001b[4mEnter directory depth :\u001b[0m "
+    read -r depth
+    if hash dust 2>/dev/null; then
+        dust -d depth
+    else
+        du -h --max-depth="$depth" path/to/directory
+    fi
 }
 
 # Trims file from git history
