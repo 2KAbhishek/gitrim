@@ -58,9 +58,7 @@ function push_change
 {
     git push origin --force --all
     git push origin --force --tag
-    echo -e "u001b[31;1m Warning! \u001b[0m"
-    echo -e " \e[1m Anyone else with a local clone of this repo should use git rebase\
-    or a fresh clone, to avoid restoring the repo to earlier state.\e[0m"
+    echo -e "\u001b[31;1m Warning! Must use rebase or fresh clone on other local repos. \u001b[0m"
 }
 
 # Clean up and exit
@@ -71,8 +69,6 @@ function bye
     exit
 }
 
-sel_repo
-
 # Infinite loop for menu
 while true
 
@@ -82,19 +78,14 @@ do
 
     # Draw UI, ANSI Escape sequences used. Edit carefully!
     echo
-    echo -e "                  \e[7m Gitrim - Trim Git Repository \e[0m"
-    echo -e " \e[1m+----------------------------------------------------------------+"
-    echo -e " \e[1m|     \u001b[34;1m (1) Select Repository          (2) Update Branches \u001b[0m       \e[1m|"
-    echo -e " \e[1m|----------------------------------------------------------------|"
-    echo -e " \e[1m|     \u001b[34;1m (3) List Largest Files         (4) Trim Files \u001b[0m            \e[1m|"
-    echo -e " \e[1m|----------------------------------------------------------------|"
-    echo -e " \e[1m|     \u001b[34;1m (5) Clean Local Repo           (6) Push Changes  \u001b[0m         \e[1m|"
-    echo -e " \e[1m+----------------------------------------------------------------+\e[0m"
-    echo -e " \e[1m|                          \u001b[31;1m (0) Quit \u001b[0m                            \e[1m|"
-    echo -e " \e[1m+----------------------------------------------------------------+\e[0m"
+    echo -e " \e[7m Gitrim - Trim Git Repository \e[0m"
+    echo -e " \u001b[34;1m (1) Select Repository          (2) Update Branches \u001b[0m"
+    echo -e " \u001b[34;1m (3) List Largest Files         (4) Trim Files \u001b[0m"
+    echo -e " \u001b[34;1m (5) Clean Local Repo           (6) Push Changes  \u001b[0m"
+    echo -e " \u001b[31;1m (0) Quit \u001b[0m"
     echo
     echo -e "\e[1m For best results use the options sequentially per repository.\e[0m"
-    echo -en "  \u001b[32;1m\u001b[4mSelect Option :\u001b[0m "
+    echo -en " \u001b[32;1m\u001b[4mSelect Option :\u001b[0m "
 
     # Save entered number
     read -r choice
