@@ -10,8 +10,6 @@
 
 Tool to trim accidentally pushed or obsolete files from git history.
 
-
-
 ## Installation
 
 Clone this repo using:
@@ -27,7 +25,6 @@ ln -sfnv $PWD/committer ~/Applications/bin
 
 Run `gitrim` and you'll be asked to enter full path of the repo.
 After this you are presented a menu from where you can select the various commands to execute.
-
 
 ### More Info
 
