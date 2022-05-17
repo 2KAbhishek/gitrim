@@ -18,7 +18,7 @@ Clone this repo using:
 git clone https://github.com/2kabhishek/gitrim
 cd gitrim
 # Setup symlink, make sure target directory is added to PATH
-ln -sfnv $PWD/committer ~/Applications/bin
+ln -sfnv $PWD/gitrim.sh ~/Applications/bin
 ```
 
 ### Usage
