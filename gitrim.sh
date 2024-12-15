@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Trim unncecessary files from git repository
 # Credits to various people over at stackoverflow
 
